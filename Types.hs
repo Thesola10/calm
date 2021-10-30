@@ -1,7 +1,8 @@
-module Types(Type, TypeAtom) where
+module Types(   Type(Bare, Application, Wide),
+                TypeAtom(TSet, TList, TFile, TText, TBool, TInt, TFloat, TNull, TNamed)) where
 
 data Type       = Bare          TypeAtom            -- T
-                | Application   TypeAtom Type       -- T -> (...)
+                | Application   Type Type           -- T -> (...)
                 | Wide          [ TypeAtom ]        -- (T or T)
 
 data TypeAtom   = TSet  [ (String, Type) ]          -- { (T) a, (T) b }
