@@ -39,7 +39,9 @@ type Token      = (Type, String)
 -- and just returns its parameter if already applied.
 apply :: Statement -> Statement
 apply (_, SFile p) = (Bare TFile, SFile p)
-apply (_, SText l) = (Bare TText, SText l)  -- TODO: Recurse into statement parts
+apply (_, SText l) = (Bare TText, SText (map sapply l))
+                    where sapply (StatementPart s) = StatementPart (apply s) ;
+                          sapply (TextPart t) = TextPart t
 apply (_, SBool b) = (Bare TBool, SBool b)
 apply (_, SInt  n) = (Bare TInt, SInt n)
 apply (_, SFloat f) = (Bare TFloat, SFloat f)
