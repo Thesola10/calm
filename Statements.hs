@@ -1,3 +1,10 @@
+module Statements(  StatementC(SSet, SList, SFile, SText, SBool, SInt, SFloat, SFunctor, SScoped, SToken, SNull),
+                    SFilePath(FLocal, FAbsolute, FUri, FPath),
+                    UQText(TextPart, StatementPart),
+                    Protocol(Http, Https, Ftp, Sftp, Git),
+                    Scope, Statement, Token,
+                    apply, getType) where
+
 import Types
 
 data StatementC = SSet      [ (String, Statement) ] -- { a = ...; } (recursive)
